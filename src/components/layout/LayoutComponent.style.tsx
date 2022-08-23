@@ -10,6 +10,8 @@ export const WrapperLayout = styled.div`
     margin: 0 auto;
     left: 0;
     right: 0;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
+    padding-bottom: 64px;
   }
 `
