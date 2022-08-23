@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
-import { Card, Loading } from '../../components'
+import { Card, Loading, Pagination } from '../../components'
 import { useAnimeContext } from '../../contexts/Anime.context'
 import { ANIME_LIST } from '../../queries/anime'
 import { WrapAnimeList } from './AnimeListPage.style'
@@ -34,8 +34,15 @@ const AnimeListPage = (props: Props) => {
   const { animeList } = useAnimeContext()
   console.log(fetchAnimeList)
 
+  const handleChangePage = (page: any) => {
+    if(page !== '...') {
+      setQuery({...query, page: page})
+    }
+  }
+
   return (
     <WrapAnimeList>
+      <Pagination currentPage={query.page} totalPage={500} handleChangePage={handleChangePage} />
       {fetchAnimeList.loading && (<Loading />)}
       <div className="card-list">
       {
