@@ -8,6 +8,9 @@ export const WrapCard = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  &:hover {
+    cursor: pointer;
+  }
   .image {
     width: inherit;
     border-radius: 4px;

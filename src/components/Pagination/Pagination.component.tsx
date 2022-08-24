@@ -28,7 +28,10 @@ const PaginationComponent = ({ currentPage, totalPage, handleChangePage }: Pagin
     const nextNearestTens = Math.ceil(nextPage / 10) * 10
     if (prevNearestTens == 0) {
       return [1, '...', ...range(prevPage, nextPage), '...', nextNearestTens];
-    } else {
+    } else if(currentPage === nextNearestTens) {
+      return [prevNearestTens, '...', ...range(prevPage-3, nextPage)];
+    }
+    else {
       return [prevNearestTens, '...', ...range(prevPage, nextPage), '...', nextNearestTens];
     }
   }

@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Card, Loading, Pagination } from '../../components'
-import { useAnimeContext } from '../../contexts/Anime.context'
 import { ANIME_LIST } from '../../queries/anime'
 import { WrapAnimeList } from './AnimeListPage.style'
+
 type Props = {}
 
 type Anime = {
@@ -18,21 +18,12 @@ type Anime = {
   averageScore: number
 }
 
-const mockData = [
-  {
-    title: "Trigun",
-    image: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6-Zzun7PHNNgPt.jpg"
-  }
-]
-
 const AnimeListPage = (props: Props) => {
   const [query, setQuery] = useState<any>({
     page: 1,
     perPage: 10
   })
   const fetchAnimeList = useQuery(ANIME_LIST, {variables: query})
-  const { animeList } = useAnimeContext()
-  console.log(fetchAnimeList)
 
   const handleChangePage = (page: any) => {
     if(page !== '...') {
@@ -49,6 +40,7 @@ const AnimeListPage = (props: Props) => {
         !fetchAnimeList.loading && fetchAnimeList.data.Page.media.map((item: Anime, index: number) => {
           return (
             <Card
+              id={item.id}
               key={index}
               title={item.title.english != null ? item.title.english : item.title.native}
               image={item.coverImage.large}

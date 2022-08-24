@@ -1,14 +1,17 @@
+import { useNavigate } from 'react-router-dom'
 import { WrapCard } from './CardComponent.style'
 
 type Props = {
+  id: number,
   title: string,
   image: string,
   averageScore: number
 }
 
-const CardComponent = ({title, image, averageScore} : Props) => {
+const CardComponent = ({id, title, image, averageScore} : Props) => {
+  const navigate = useNavigate()
   return (
-    <WrapCard>
+    <WrapCard onClick={() => navigate(`/detail/${id}`)}>
       <div className="image">
         <div className={`score ${averageScore < 80 ? 'orange' : 'green'}`}>
           <span>{averageScore}</span>
