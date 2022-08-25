@@ -2,27 +2,22 @@ import { useQuery } from '@apollo/client'
 import { useState } from 'react'
 import { Card, Loading, Pagination } from '../../components'
 import { ANIME_LIST } from '../../queries/anime'
+import { Anime } from '../../types/Anime'
 import { WrapAnimeList } from './AnimeListPage.style'
 
 type Props = {}
 
-type Anime = {
-  id: number,
-  title: {
-    english: string;
-    native: string;
-  },
-  coverImage: {
-    large: string
-  },
-  averageScore: number
+type Query = {
+  page: number,
+  perPage: 10
 }
 
 const AnimeListPage = (props: Props) => {
-  const [query, setQuery] = useState<any>({
+  const [query, setQuery] = useState<Query>({ 
     page: 1,
     perPage: 10
   })
+
   const fetchAnimeList = useQuery(ANIME_LIST, {variables: query})
 
   const handleChangePage = (page: any) => {

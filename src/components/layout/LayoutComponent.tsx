@@ -9,7 +9,9 @@ const LayoutComponent = (props: Props) => {
   return (
     <WrapperLayout>
       <div className='content'>
-        {props.children}
+        <div className='content-body'>
+          {props.children}
+        </div>
         <MenuBottom />
       </div>
     </WrapperLayout>

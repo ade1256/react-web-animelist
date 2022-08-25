@@ -16,7 +16,7 @@ export const WrapPagination = styled.div`
       color: #fff;
       border: 1px solid blue;
     }
-    &:first-child {
+    &:first-of-type {
       border-bottom-left-radius: 4px;
       border-top-left-radius: 4px;
     }

@@ -4,7 +4,7 @@ export const WrapCard = styled.div`
   position: relative;
   margin-bottom: 16px;
   margin-right: 8px;
-  width: 150px;
+  width: 145px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

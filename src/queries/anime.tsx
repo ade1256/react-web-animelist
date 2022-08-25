@@ -26,7 +26,7 @@ export const ANIME_LIST = gql`
 `;
 
 export const ANIME_DETAIL = gql`
-  query ($id: Int) {
+  query GetAnimeDetailById($id: Int) {
     Media(id: $id) {
       id
       title {
@@ -41,6 +41,8 @@ export const ANIME_DETAIL = gql`
       averageScore
       genres
       description
+      episodes
+      isAdult
     }
   }
 `;
