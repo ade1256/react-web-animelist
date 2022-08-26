@@ -2,9 +2,13 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { WrapBack } from "./Back.style"
 
-const NavbarComponent = () => {
+type BackProps = {
+  handleClick: () => any
+}
+
+const BackComponent = (props: BackProps) => {
   return (
-    <WrapBack>
+    <WrapBack onClick={props.handleClick}>
       <div className="btn">
         <FontAwesomeIcon icon={solid('arrow-left')} />
         <span>Back</span>
@@ -13,4 +17,4 @@ const NavbarComponent = () => {
   )
 }
 
-export default NavbarComponent
+export default BackComponent

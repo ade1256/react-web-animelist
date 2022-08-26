@@ -17,4 +17,7 @@ export const WrapBack = styled.div`
       margin-left: 8px;
     }
   }
+  &:hover {
+    cursor: pointer;
+  }
 `

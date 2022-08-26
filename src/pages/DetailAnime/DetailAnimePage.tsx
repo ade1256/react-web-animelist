@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client"
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { AdultIcon, Back, Button, Loading } from "../../components"
 import { ANIME_DETAIL } from "../../queries/anime"
 import { AnimeDetail } from "../../types/Anime"
@@ -10,12 +10,13 @@ import { WrapDetailAnimePage } from "./DetailAnimePage.style"
 type PageProps = {}
 
 const DetailAnimePage = (props: PageProps) => {
+  const navigate = useNavigate()
   const params = useParams()
   const { loading, data } = useQuery(ANIME_DETAIL, { variables: { id: params.id } })
   const dataAnime: AnimeDetail = data?.Media
   return (
     <WrapDetailAnimePage>
-      <Back />
+      <Back handleClick={() => { navigate(-1) }} />
       {loading && <Loading />}
       {
         !loading && (

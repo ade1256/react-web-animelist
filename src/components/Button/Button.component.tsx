@@ -6,6 +6,7 @@ type ButtonProps = {
   style?: React.CSSProperties,
   theme?: string,
   className?: string
+  onClick?: () => any
 }
 
 const defaultProps = {
@@ -21,7 +22,7 @@ const ButtonComponent = (props: ButtonProps) => {
   }
 
   return (
-    <WrapButton className={props.className}>
+    <WrapButton className={props.className} onClick={props.onClick}>
       {_renderButton()}
     </WrapButton>
   )
