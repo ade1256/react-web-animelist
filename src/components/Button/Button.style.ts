@@ -20,4 +20,11 @@ export const WrapButton = styled.button`
       color: #fff;
     }
   }
+  &:disabled {
+    .button {
+      &.primary {
+        background: #cdcdcd;
+      }
+    }
+  }
 `

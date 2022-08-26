@@ -20,5 +20,8 @@ export const WrapMenuBottom = styled.div`
     span {
       font-size: 14px;
     }
+    &:hover {
+      cursor: pointer;
+    }
   }
 `
