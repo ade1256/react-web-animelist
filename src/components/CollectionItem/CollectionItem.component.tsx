@@ -2,12 +2,13 @@ import { WrapCollectionItem } from "./CollectionItem.style"
 
 type CollectionItemProps = {
   id: number,
-  name: string
+  name: string,
+  onClick?: () => any
 }
 
-const CollectionItemComponent = ({ id, name } : CollectionItemProps) => {
+const CollectionItemComponent = ({ id, name, onClick } : CollectionItemProps) => {
   return (
-    <WrapCollectionItem>
+    <WrapCollectionItem onClick={onClick}>
       <div className="name">{name}</div>
     </WrapCollectionItem>
   )

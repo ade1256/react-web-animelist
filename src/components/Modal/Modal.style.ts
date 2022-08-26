@@ -36,7 +36,11 @@ export const WrapModal = styled.div`
       }
     }
     .content-body {
-      padding: 16px;
+      padding: 8px;
+      .content-collection {
+        display: flex;
+        flex-wrap: wrap;
+      }
     }
   }
 `

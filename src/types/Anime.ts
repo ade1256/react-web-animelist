@@ -20,8 +20,7 @@ export interface AnimeDetail extends Anime {
 }
 
 export interface AnimeCollection extends Anime {
-  idCollection: number,
-  isSaved: boolean
+  collectionId: number
 }
 
 export interface Collection {

@@ -19,7 +19,10 @@ const ButtonComponent = (props: ButtonProps) => {
   const _renderButton = ():any => {
     if(props.theme === 'primary') {
       return <div className={`button primary`}>{props.children}</div>
-    } else {
+    } else if(props.theme === 'secondary') {
+      return <div className={`button secondary`}>{props.children}</div>
+    } 
+    else {
       return <div className={`button default`}>{props.children}</div>
     }
   }

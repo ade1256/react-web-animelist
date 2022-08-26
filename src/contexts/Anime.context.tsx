@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AnimeCollectionList, Collection, CollectionList } from "../types/Anime";
+import { AnimeCollection, AnimeCollectionList, Collection, CollectionList } from "../types/Anime";
 
 export const AnimeContext = React.createContext<any>(null);
 export const useAnimeContext = () => useContext(AnimeContext);
 
-export const AnimeContextProvider = ({ children } : any) => {
+export const AnimeContextProvider = ({ children }: any) => {
   const [collections, setCollections] = useState<CollectionList>([])
   const [animeCollections, setAnimeCollections] = useState<AnimeCollectionList>([])
 
@@ -18,15 +18,26 @@ export const AnimeContextProvider = ({ children } : any) => {
     setCollections(myCollection)
   }
 
-  useEffect(() => {
+  const addAnimeCollection = (data: AnimeCollection) => {
+    let myCollection = animeCollections
+    myCollection.push(data)
+    localStorage.setItem("anime_collections", JSON.stringify(myCollection))
+    setAnimeCollections(myCollection)
+  }
 
+  const removeAnimeFromCollection = (data: AnimeCollectionList) => {
+    localStorage.setItem("anime_collections", JSON.stringify(data))
+    setAnimeCollections(data)
+  }
+
+  useEffect(() => {
     // Initiate state from localstorage list of collection anime
     const fetchingLocalstorage = (name: string) => {
       const getLocalStorage = localStorage.getItem(name)
       if (getLocalStorage === null) {
         localStorage.setItem(name, JSON.stringify([]))
       } else {
-        if (name === "anime_colelctions") {
+        if (name === "anime_collections") {
           setAnimeCollections(JSON.parse(getLocalStorage))
         }
         if (name === "collections") {
@@ -43,7 +54,9 @@ export const AnimeContextProvider = ({ children } : any) => {
       value={{
         collections,
         addCollection,
-        animeCollections
+        animeCollections,
+        addAnimeCollection,
+        removeAnimeFromCollection
       }}
     >
       {children}
