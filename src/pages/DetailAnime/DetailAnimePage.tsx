@@ -1,6 +1,8 @@
 import { useQuery } from "@apollo/client"
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useParams } from "react-router-dom"
-import { Back, Loading } from "../../components"
+import { AdultIcon, Back, Button, Loading } from "../../components"
 import { ANIME_DETAIL } from "../../queries/anime"
 import { AnimeDetail } from "../../types/Anime"
 import { WrapDetailAnimePage } from "./DetailAnimePage.style"
@@ -30,22 +32,30 @@ const DetailAnimePage = (props: PageProps) => {
                   })
                 }
               </div>
-              <div className="counting">
-                <div className="item">
-                  <span>Score</span>
-                  <span>{dataAnime.averageScore}</span>
-                </div>
-                <div className="item">
-                  <span>Season Year</span>
-                  <span>{dataAnime.seasonYear}</span>
-                </div>
-                <div className="item">
-                  <span>Episodes</span>
-                  <span>{dataAnime.episodes}</span>
-                </div>
-              </div>
-              <div className="description" dangerouslySetInnerHTML={{__html: dataAnime.description}} />
             </div>
+            <div className="counting">
+              <div className="item">
+                <span>Score</span>
+                <span>{dataAnime.averageScore}</span>
+              </div>
+              <div className="item">
+                <span>Season Year</span>
+                <span>{dataAnime.seasonYear}</span>
+              </div>
+              <div className="item">
+                <span>Episodes</span>
+                <span>{dataAnime.episodes}</span>
+              </div>
+            </div>
+            <div className="additional-information">
+              <div className="time">
+                <FontAwesomeIcon icon={solid('clock')} />
+                <span>{dataAnime.duration} minutes</span>
+              </div>
+              {dataAnime.isAdult && <AdultIcon />}
+            </div>
+            <div className="description" dangerouslySetInnerHTML={{ __html: dataAnime.description }} />
+            <Button className="m-20"><FontAwesomeIcon icon={solid('plus')} /> Collection</Button>
           </div>
         )
       }

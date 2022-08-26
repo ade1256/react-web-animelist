@@ -17,10 +17,10 @@ export const WrapDetailAnimePage = styled.div`
     }
     .detail-title {
       padding-top: 8px;
-      padding-left: 8px;
       width: 100%;
       h2 {
         font-size: 18px;
+        letter-spacing: 1px;
       }
       .genres {
         padding-top: 8px;
@@ -61,8 +61,23 @@ export const WrapDetailAnimePage = styled.div`
       }
     }
 
-    .description {
+    .additional-information {
       padding: 16px 0px;
+      display: flex;
+      justify-content: space-between;
+      .time {
+      font-size: 12px;
+      .svg-inline--fa {
+        color: #8b99af;
+      }
+      span { margin-left: 4px;}
+      }
+    }
+
+    .description {
+      text-align: justify;
+      font-size: 14px;
+      letter-spacing: 0.5px;
     }
   }
 `

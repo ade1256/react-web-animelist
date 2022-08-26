@@ -1,4 +1,47 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled'
+
+function createMarginTopIteration() {
+  let styles = '';
+
+  for (let i = 0; i < 100; i += 4) {
+     styles += `
+       .mt-${i} {
+         margin-top: ${i}px;
+       }
+     `
+  }
+
+  return css`${styles}`;
+}
+
+function createMarginIteration() {
+  let styles = '';
+
+  for (let i = 0; i < 100; i += 4) {
+     styles += `
+       .m-${i} {
+         margin: ${i}px 0px;
+       }
+     `
+  }
+
+  return css`${styles}`;
+}
+
+function createPaddingIteration() {
+  let styles = '';
+
+  for (let i = 0; i < 100; i += 4) {
+     styles += `
+       .p-${i} {
+         padding: ${i}px 0px;
+       }
+     `
+  }
+
+  return css`${styles}`;
+}
 
 export const WrapperLayout = styled.div`
   background-color: #eef5ff;
@@ -17,4 +60,8 @@ export const WrapperLayout = styled.div`
       padding: 0px 8px;
     }
   }
+
+  ${createMarginTopIteration()}
+  ${createMarginIteration()}
+  ${createPaddingIteration()}
 `

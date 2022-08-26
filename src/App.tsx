@@ -1,8 +1,8 @@
 import { Layout } from './components'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AnimeListPage from './pages/AnimeList';
+import DetailAnimePage from './pages/DetailAnime';
 import { AnimeContextProvider } from './contexts/Anime.context';
-import DetailAnimePage from './pages/DetailAnime/DetailAnimePage';
 
 function App() {
   return (
