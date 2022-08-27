@@ -1,10 +1,10 @@
 import { AnimeCollection, AnimeCollectionList } from "../../types/Anime"
 
-export const handleClickRemove = (id: number, state: any, setState: any) => {
+export const handleClickRemove = (item: any, state: any, setState: any) => {
   setState({
     ...state,
     showModalRemove: true,
-    selectedAnimeId: id
+    selectedAnime: item
   })
 }
 
@@ -17,7 +17,7 @@ export const handleCloseModal = (type: string, state: any, setState: any) => {
 }
 
 export const handleConfirmRemove = (state: any, setState: any, removeAnimeFromCollection: any, collectionList: Array<any>[]) => {
-  const newArrayExceptId = collectionList.filter((x: any) => x.id !== state.selectedAnimeId)
+  const newArrayExceptId = collectionList.filter((x: any) => x.id !== state.selectedAnime.id)
   removeAnimeFromCollection(newArrayExceptId)
   handleCloseModal('delete', state, setState)
 }

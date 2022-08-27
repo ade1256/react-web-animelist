@@ -15,7 +15,12 @@ const CollectionDetailPage = () => {
   const collectionId = params.id
   const { animeCollections, collections, removeAnimeFromCollection, updateCollections } = useAnimeContext()
   const [state, setState] = useState({
-    selectedAnimeId: 0,
+    selectedAnime: {
+      id: 0,
+      title: {english: '', native: ''},
+      coverImage: { large: ''},
+      averageScore: 0
+    },
     selectedCollectionId: 0,
     showModalRemove: false,
     showModalRename: false
@@ -57,7 +62,7 @@ const CollectionDetailPage = () => {
                 image={item.coverImage.large}
                 averageScore={item.averageScore}
                 isShowRemoveButton
-                onRemove={() => handleClickRemove(item.id, state, setState)}
+                onRemove={() => handleClickRemove(item, state, setState)}
               />
             )
           })
@@ -67,6 +72,8 @@ const CollectionDetailPage = () => {
         <ModalConfirmation
           onCloseModal={() => handleCloseModal('delete', state, setState)}
           onConfirm={() => handleConfirmRemove(state, setState, removeAnimeFromCollection, animeCollections)}
+          collectionName={collectionName[0].name}
+          anime={state.selectedAnime}
         />
       )}
       {state.showModalRename && (
