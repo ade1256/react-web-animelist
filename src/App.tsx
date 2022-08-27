@@ -1,9 +1,8 @@
 import { Layout } from './components'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AnimeListPage from './pages/AnimeList';
-import DetailAnimePage from './pages/DetailAnime';
 import { AnimeContextProvider } from './contexts/Anime.context';
-import CollectionsPage from './pages/Collections/CollectionsPage';
+import { AnimeListPage, CollectionDetailPage, CollectionsPage, DetailAnimePage } from './pages';
+
 
 function App() {
   return (
@@ -15,6 +14,7 @@ function App() {
               <Route path="/" element={<AnimeListPage />} />
               <Route path="/detail/:id" element={<DetailAnimePage />} />
               <Route path="/collections" element={<CollectionsPage />} />
+              <Route path="/collection/:id" element={<CollectionDetailPage />} />
             </Routes>
           </Layout>
         </div>

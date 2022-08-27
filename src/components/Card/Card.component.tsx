@@ -1,3 +1,5 @@
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from 'react-router-dom'
 import { WrapCard } from './CardComponent.style'
 
@@ -5,22 +7,37 @@ type Props = {
   id: number,
   title: string,
   image: string,
-  averageScore: number
+  averageScore: number,
+  isShowRemoveButton?: boolean,
+  onRemove?: () => any
 }
 
-const CardComponent = ({id, title, image, averageScore} : Props) => {
+const defaultProps = {
+  isShowRemoveButton: false
+}
+
+const CardComponent = ({id, title, image, averageScore, isShowRemoveButton, onRemove} : Props) => {
   const navigate = useNavigate()
   return (
-    <WrapCard onClick={() => navigate(`/detail/${id}`)}>
-      <div className="image">
-        <div className={`score ${averageScore < 80 ? 'orange' : 'green'}`}>
+    <WrapCard>
+      <div className={`score ${averageScore < 80 ? 'orange' : 'green'}`}>
           <span>{averageScore}</span>
         </div>
+        {
+          isShowRemoveButton && (
+            <div className='remove' onClick={onRemove}>
+              <FontAwesomeIcon icon={solid('trash')} />
+            </div>
+          )
+        }
+      <div className="image" onClick={() => navigate(`/detail/${id}`)}>
         <img src={image} />
       </div>
-      <span>{title}</span>
+      <span onClick={() => navigate(`/detail/${id}`)}>{title}</span>
     </WrapCard>
   )
 }
+
+CardComponent.defaultProps = defaultProps
 
 export default CardComponent

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { theme } from '../../configs/theme'
 
 export const WrapCard = styled.div`
   position: relative;
@@ -42,6 +43,24 @@ export const WrapCard = styled.div`
     span {
       position: relative;
       bottom: 4px;
+    }
+  }
+
+  .remove {
+    position: absolute;
+    right: 4px;
+    bottom: 30px;
+    border-radius: 50px;
+    width: 16px;
+    height: 16px;
+    padding: 8px;
+    color: ${theme.gray};
+    background: ${theme.darkGray};
+    font-size: 12px;
+    text-align: center;
+    &:hover {
+      color: #fff;
+      background: ${theme.gradientPrimary};
     }
   }
 `

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const WrapCollectionsPage = styled.div`
+export const WrapCollectionDetailPage = styled.div`
   position: relative;
   padding: 16px 0px;
   .head {
@@ -15,8 +15,15 @@ export const WrapCollectionsPage = styled.div`
       }
     }
   }
-  .content-collection {
+  .card-list {
+    position: relative;
     display: flex;
+    justify-content: flex-start;
     flex-wrap: wrap;
+    margin: 0 auto;
+    left: 7px;
+    right: 0;
+    bottom: 0;
+    margin-top: 20px;
   }
 `

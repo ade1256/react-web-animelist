@@ -5,8 +5,10 @@ import { isEmpty } from "../../utils/arrayCheck"
 import { WrapCollectionsPage } from "./CollectionsPage.style"
 import { AnimeCollection, Collection } from '../../types/Anime'
 import { validateCollectionName } from "./CollectionPage.handler"
+import { useNavigate } from "react-router-dom"
 
 const CollectionsPage = () => {
+  const navigate = useNavigate()
   const { collections, animeCollections, addCollection } = useAnimeContext()
   const [state, setState] = useState({
     name: '',
@@ -45,9 +47,12 @@ const CollectionsPage = () => {
 
   const getFirstImageByCollectionId = (id: number) => {
     const findCollection = animeCollections.filter((anime: AnimeCollection) => anime.collectionId === id)
-    if(!isEmpty(findCollection)) {
+    if (!isEmpty(findCollection)) {
       return findCollection[0].coverImage.large
     }
+  }
+  const handleClick = (id: number) => {
+    navigate(`/collection/${id}`)
   }
   return (
     <WrapCollectionsPage>
@@ -62,7 +67,12 @@ const CollectionsPage = () => {
       <div className="content-collection">
         {
           !isEmpty(collections) && collections.map((collection: Collection, index: number) => {
-            return <CollectionItem key={index} id={collection.id} name={collection.name} coverImage={getFirstImageByCollectionId(collection.id)} />
+            return <CollectionItem key={index}
+              id={collection.id}
+              name={collection.name}
+              coverImage={getFirstImageByCollectionId(collection.id)}
+              onClick={() => handleClick(collection.id)}
+            />
           })
         }
       </div>

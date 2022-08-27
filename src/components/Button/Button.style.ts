@@ -23,6 +23,9 @@ export const WrapButton = styled.button`
       background: ${theme.gradientSecondary};
       color: #fff;
     }
+    &.no-bg {
+      background: none;
+    }
   }
   &:disabled {
     .button {
