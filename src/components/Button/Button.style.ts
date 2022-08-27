@@ -26,10 +26,14 @@ export const WrapButton = styled.button`
     &.no-bg {
       background: none;
     }
+    &.default {
+      background: ${theme.orange};
+      color: #fff;
+    }
   }
   &:disabled {
     .button {
-      &.primary {
+      &.primary, &.default, &.secondary {
         background: #cdcdcd;
       }
     }

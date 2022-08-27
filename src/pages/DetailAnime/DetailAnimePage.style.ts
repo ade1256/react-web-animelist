@@ -79,5 +79,10 @@ export const WrapDetailAnimePage = styled.div`
       font-size: 14px;
       letter-spacing: 0.5px;
     }
+
+    .collections-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 `

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { theme } from "../../configs/theme";
 
 export const WrapCollectionItem = styled.div`
   position: relative;
@@ -34,5 +35,9 @@ export const WrapCollectionItem = styled.div`
   .info-collection {
     display: flex;
     overflow: hidden;
+    &.selected {
+      background: ${theme.orange};
+      color: #fff;
+    }
   }
 `

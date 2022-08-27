@@ -42,5 +42,12 @@ export const WrapModal = styled.div`
         flex-wrap: wrap;
       }
     }
+    .group-flex {
+      display: flex;
+      align-items: flex-start;
+    }
+    p {
+      font-size: 12px;
+    }
   }
 `

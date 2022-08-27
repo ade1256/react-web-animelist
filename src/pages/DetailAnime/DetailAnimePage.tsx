@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client"
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { AdultIcon, Back, Button, CollectionItem, Loading, Modal, TextField } from "../../components"
 import { useAnimeContext } from "../../contexts/Anime.context"
@@ -21,18 +21,31 @@ const DetailAnimePage = () => {
     isDisabled: true,
     errorMessage: 'Name cannot empty!'
   })
+  const [selectedCollection, setSelectedCollection] = useState<any[]>([])
+  const [savedToCollections, setSavedToCollections] = useState<any[]>([])
   const { collections, animeCollections, addAnimeCollection, removeAnimeFromCollection, addCollection } = useAnimeContext()
   const { loading, data } = useQuery(ANIME_DETAIL, { variables: { id: params.id } })
   const dataAnime: AnimeDetail = data?.Media
 
   const handleToggleModal = () => setState({ ...state, isShowModal: !state.isShowModal })
 
-  const isAnimeSaved = animeCollections.filter((x: any) => x?.id === dataAnime?.id).length === 1
+  const isAnimeSaved = animeCollections.filter((x: any) => x?.id === dataAnime?.id).length > 1
 
-  const handleSelectCollection = (id: number) => {
-    addAnimeCollection({
-      collectionId: id,
-      ...dataAnime
+  const handleSelectCollection = async (id: number) => {
+    const isSelected = selectedCollection.includes(id)
+    if (isSelected) {
+      setSelectedCollection((prev) => prev.filter(x => x !== id))
+    } else {
+      setSelectedCollection((prev) => [...prev, id])
+    }
+  }
+
+  const handleSaveCollections = () => {
+    selectedCollection.map((collectionId: number) => {
+      addAnimeCollection({
+        collectionId,
+        ...dataAnime
+      })
     })
     handleToggleModal()
   }
@@ -71,6 +84,19 @@ const DetailAnimePage = () => {
       name: ''
     })
   }
+
+  useEffect(() => {
+    const getCollectionsAlreadySaved = () => {
+      let savedCollections: any = []
+      const dataAllSaved = animeCollections.filter((x: any) => x?.id === dataAnime?.id)
+      dataAllSaved.map((data: any) => {
+        savedCollections.push(collections.find((x: any) => x.id === data.collectionId))
+      })
+  
+      setSavedToCollections(savedCollections)
+    }
+    getCollectionsAlreadySaved()
+  }, [dataAnime, collections])
 
   return (
     <WrapDetailAnimePage>
@@ -114,9 +140,17 @@ const DetailAnimePage = () => {
               {dataAnime.isAdult && <AdultIcon />}
             </div>
             <div className="description" dangerouslySetInnerHTML={{ __html: dataAnime.description }} />
+            {isAnimeSaved && <p style={{ marginTop: 8, fontSize: 14, fontWeight: 600 }}>Saved to collections :</p> }
+            <div className="collections-list">
+              {
+                isAnimeSaved && savedToCollections.map((collection: any, index: number) => {
+                  return <CollectionItem key={index} id={collection.id} name={collection.name} onClick={() => navigate(`/collection/${collection.id}`)} isShowCover={false} />
+                })
+              }
+            </div>
             {
               isAnimeSaved ? (
-                <Button className="m-20" theme="secondary" onClick={handleRemoveCollection}><FontAwesomeIcon icon={solid('remove')} /> Remove from collection</Button>
+                <Button className="m-20" theme="secondary" onClick={handleRemoveCollection}><FontAwesomeIcon icon={solid('remove')} /> Remove from  all collections</Button>
               ) : (
                 <Button className="m-20" onClick={handleToggleModal}><FontAwesomeIcon icon={solid('plus')} /> Collection</Button>
               )
@@ -127,16 +161,21 @@ const DetailAnimePage = () => {
       {
         state.isShowModal && (
           <Modal title="Add to my collection..." onClose={handleToggleModal}>
+            <p>Select to collections</p>
             <div className="content-collection">
               {
                 !isEmpty(collections) && collections.map((collection: Collection, index: number) => {
-                  return <CollectionItem key={index} id={collection.id} name={collection.name} onClick={() => handleSelectCollection(collection.id)} isShowCover={false} />
+                  return <CollectionItem key={index} id={collection.id} name={collection.name} onClick={() => handleSelectCollection(collection.id)} isShowCover={false} isSelected={selectedCollection.includes(collection.id)} />
                 })
               }
             </div>
-            <div className="mt-16">
-            <TextField type="text" onChange={handleChange} isError={state.isError} errorMessage={state.errorMessage} value={state.name} />
-            <Button style={{ width: '-webkit-fill-available', marginTop: 8 }} onClick={handleClickAdd} isDisabled={state.isDisabled}>Add</Button>
+            <p>Add new collection name</p>
+            <div className="mt-8 group-flex">
+              <TextField type="text" onChange={handleChange} isError={state.isError} errorMessage={state.errorMessage} value={state.name} />
+              <Button style={{ marginLeft: 8 }} onClick={handleClickAdd} isDisabled={state.isDisabled} theme="default">Add</Button>
+            </div>
+            <div className="mt-16" style={{ width: '100%' }}>
+              <Button onClick={handleSaveCollections} isDisabled={isEmpty(selectedCollection)}>Save</Button>
             </div>
           </Modal>
         )

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const StyledTextField = styled.input`
   position: relative;
-  padding: 4px 8px;
+  padding: 6px 8px;
   width: fill;
   width: -webkit-fill-available;
 `

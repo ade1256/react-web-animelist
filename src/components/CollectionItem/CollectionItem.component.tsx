@@ -12,17 +12,19 @@ type CollectionItemProps = {
   isShowRemoveBtn?: boolean,
   isShowEditBtn?: boolean,
   onClickRemove?: () => any,
-  onClickEdit?: () => any
+  onClickEdit?: () => any,
+  isSelected?: boolean
 }
 
 const defaultProps = {
   coverImage: NoCollectionImage,
   isShowCover: true,
   isShowRemoveBtn: false,
-  isShowEditBtn: false
+  isShowEditBtn: false,
+  isSelected: false
 }
 
-const CollectionItemComponent = ({ id, name, onClick, coverImage, isShowCover, isShowRemoveBtn, isShowEditBtn, onClickEdit, onClickRemove } : CollectionItemProps) => {
+const CollectionItemComponent = ({ id, name, onClick, coverImage, isShowCover, isShowRemoveBtn, isShowEditBtn, onClickEdit, onClickRemove, isSelected } : CollectionItemProps) => {
   return (
     <WrapCollectionItem>
       {
@@ -32,7 +34,7 @@ const CollectionItemComponent = ({ id, name, onClick, coverImage, isShowCover, i
           </div>
         )
       }
-      <div className="info-collection">
+      <div className={`info-collection ${isSelected && 'selected'}`}>
         <div className="name" onClick={onClick}>{name}</div>
         {isShowEditBtn && <div className="editIcon" onClick={onClickEdit}><FontAwesomeIcon icon={solid('edit')} /></div>}
         {isShowRemoveBtn && <div className="removeIcon" onClick={onClickRemove}><FontAwesomeIcon icon={solid('trash')} /></div>}
