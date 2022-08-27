@@ -7,6 +7,7 @@ import { AnimeCollection, Collection } from '../../types/Anime'
 import { handleClickIcon, handleCloseModal, handleConfirmRemove, validateCollectionName } from "./CollectionPage.handler"
 import { useNavigate } from "react-router-dom"
 import ModalRemoveConfirmation from "./modules/ModalDeleteConfirmation"
+import ModalRenameCollection from "./modules/ModalRenameCollection"
 
 const CollectionsPage = () => {
   const navigate = useNavigate()
@@ -61,6 +62,18 @@ const CollectionsPage = () => {
   const handleClick = (id: number) => {
     navigate(`/collection/${id}`)
   }
+
+  const onConfirmRename = (value: any) => {
+    const cloneCollections = collections
+
+    cloneCollections[state.selectedCollection.id] = {
+      ...cloneCollections[state.selectedCollection.id],
+      name: value.name
+    }
+    updateCollections(cloneCollections)
+    handleCloseModal('edit', state, setState)
+  }
+
   return (
     <WrapCollectionsPage>
       <div className="head">
@@ -82,6 +95,7 @@ const CollectionsPage = () => {
               isShowRemoveBtn
               isShowEditBtn
               onClickRemove={() => handleClickIcon('remove', state, setState, collection)}
+              onClickEdit={() => handleClickIcon('edit', state, setState, collection)}
             />
           })
         }
@@ -100,6 +114,14 @@ const CollectionsPage = () => {
             onCloseModal={() => handleCloseModal('remove', state, setState)}
             onConfirm={() => handleConfirmRemove(state, setState, updateCollections, collections, removeAnimeFromCollection, animeCollections)}
             selectedCollection={state.selectedCollection}
+          />
+        )
+      }
+      {
+        state.isShowModalEdit && (
+          <ModalRenameCollection
+            onCloseModal={() => handleCloseModal('edit', state, setState)}
+            onConfirm={onConfirmRename}
           />
         )
       }
