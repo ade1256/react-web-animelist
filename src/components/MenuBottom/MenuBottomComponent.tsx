@@ -17,7 +17,7 @@ const MenuBottomComponent = () => {
         <div className="icon">
           <FontAwesomeIcon icon={solid('star')} />
         </div>
-        <span>My Favorite</span>
+        <span>My Collections</span>
       </div>
     </WrapMenuBottom>
   )
