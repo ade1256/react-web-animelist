@@ -4,18 +4,25 @@ import { useAnimeContext } from "../../contexts/Anime.context"
 import { isEmpty } from "../../utils/arrayCheck"
 import { WrapCollectionsPage } from "./CollectionsPage.style"
 import { AnimeCollection, Collection } from '../../types/Anime'
-import { validateCollectionName } from "./CollectionPage.handler"
+import { handleClickIcon, handleCloseModal, handleConfirmRemove, validateCollectionName } from "./CollectionPage.handler"
 import { useNavigate } from "react-router-dom"
+import ModalRemoveConfirmation from "./modules/ModalDeleteConfirmation"
 
 const CollectionsPage = () => {
   const navigate = useNavigate()
-  const { collections, animeCollections, addCollection } = useAnimeContext()
+  const { collections, animeCollections, addCollection, updateCollections } = useAnimeContext()
   const [state, setState] = useState({
     name: '',
     isError: true,
     isShowModal: false,
     isDisabled: true,
-    errorMessage: 'Name cannot empty!'
+    errorMessage: 'Name cannot empty!',
+    selectedCollection: {
+      id: 0,
+      name: ''
+    },
+    isShowModalRemove: false,
+    isShowModalEdit: false
   })
   const handleChange = (e: any) => {
     const value = e.target.value
@@ -72,6 +79,9 @@ const CollectionsPage = () => {
               name={collection.name}
               coverImage={getFirstImageByCollectionId(collection.id)}
               onClick={() => handleClick(collection.id)}
+              isShowRemoveBtn
+              isShowEditBtn
+              onClickRemove={() => handleClickIcon('remove', state, setState, collection)}
             />
           })
         }
@@ -82,6 +92,15 @@ const CollectionsPage = () => {
             <TextField type="text" onChange={handleChange} isError={state.isError} errorMessage={state.errorMessage} />
             <Button style={{ width: '-webkit-fill-available', marginTop: 8 }} onClick={handleClickAdd} isDisabled={state.isDisabled}>Add</Button>
           </Modal>
+        )
+      }
+      {
+        state.isShowModalRemove && (
+          <ModalRemoveConfirmation
+            onCloseModal={() => handleCloseModal('remove', state, setState)}
+            onConfirm={() => handleConfirmRemove(state, setState, updateCollections, collections)}
+            selectedCollection={state.selectedCollection}
+          />
         )
       }
     </WrapCollectionsPage>

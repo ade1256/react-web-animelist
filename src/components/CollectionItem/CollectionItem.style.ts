@@ -22,13 +22,14 @@ export const WrapCollectionItem = styled.div`
   &:hover {
     cursor: pointer;
   }
-  .removeIcon {
+  .removeIcon, .editIcon {
     position: relative;
-    right: 8px;
     top: 9px;
     font-size: 14px;
     height: 100%;
     overflow: hidden;
+    margin-right: 8px;
+    width: 16px;
   }
   .info-collection {
     display: flex;

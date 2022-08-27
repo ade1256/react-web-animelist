@@ -1,5 +1,3 @@
-import { AnimeCollection, AnimeCollectionList } from "../../types/Anime"
-
 export const handleClickRemove = (item: any, state: any, setState: any) => {
   setState({
     ...state,
