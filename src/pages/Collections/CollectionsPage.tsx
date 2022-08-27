@@ -42,6 +42,13 @@ const CollectionsPage = () => {
     addCollection(state)
     handleToggleModal()
   }
+
+  const getFirstImageByCollectionId = (id: number) => {
+    const findCollection = animeCollections.filter((anime: AnimeCollection) => anime.collectionId === id)
+    if(!isEmpty(findCollection)) {
+      return findCollection[0].coverImage.large
+    }
+  }
   return (
     <WrapCollectionsPage>
       <div className="head">
@@ -55,7 +62,7 @@ const CollectionsPage = () => {
       <div className="content-collection">
         {
           !isEmpty(collections) && collections.map((collection: Collection, index: number) => {
-            return <CollectionItem key={index} id={collection.id} name={collection.name} />
+            return <CollectionItem key={index} id={collection.id} name={collection.name} coverImage={getFirstImageByCollectionId(collection.id)} />
           })
         }
       </div>

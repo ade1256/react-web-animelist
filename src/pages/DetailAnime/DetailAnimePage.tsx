@@ -130,7 +130,7 @@ const DetailAnimePage = () => {
             <div className="content-collection">
               {
                 !isEmpty(collections) && collections.map((collection: Collection, index: number) => {
-                  return <CollectionItem key={index} id={collection.id} name={collection.name} onClick={() => handleSelectCollection(collection.id)} />
+                  return <CollectionItem key={index} id={collection.id} name={collection.name} onClick={() => handleSelectCollection(collection.id)} isShowCover={false} />
                 })
               }
             </div>
