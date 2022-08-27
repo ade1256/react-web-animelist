@@ -15,8 +15,23 @@ export const WrapCollectionItem = styled.div`
   }
   .name {
     padding: 8px 16px;
+    width: 75%;
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
   }
   &:hover {
     cursor: pointer;
+  }
+  .removeIcon {
+    position: relative;
+    right: 8px;
+    top: 9px;
+    font-size: 14px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .info-collection {
+    display: flex;
+    overflow: hidden;
   }
 `
