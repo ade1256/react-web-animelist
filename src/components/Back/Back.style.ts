@@ -13,11 +13,13 @@ export const WrapBack = styled.div`
     position: relative;
     padding: 0px 8px;
     top: 8px;
+    width: fit-content;
+    display: inline;
     span {
       margin-left: 8px;
     }
-  }
-  &:hover {
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `

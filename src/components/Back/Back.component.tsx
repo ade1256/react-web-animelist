@@ -8,8 +8,8 @@ type BackProps = {
 
 const BackComponent = (props: BackProps) => {
   return (
-    <WrapBack onClick={props.handleClick}>
-      <div className="btn">
+    <WrapBack>
+      <div className="btn" onClick={props.handleClick}>
         <FontAwesomeIcon icon={solid('arrow-left')} />
         <span>Back</span>
       </div>

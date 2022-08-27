@@ -7,13 +7,14 @@ type TextFieldProps = {
   type: HTMLInputTypeAttribute,
   isError?: boolean,
   isDisabled: boolean,
-  errorMessage?: string
+  errorMessage?: string,
+  value?: string
 }
 
-const TextFieldComponent = ({ type, onChange, placeholder, isDisabled, isError, errorMessage }: TextFieldProps) => {
+const TextFieldComponent = ({ type, onChange, placeholder, isDisabled, isError, errorMessage, value }: TextFieldProps) => {
   return (
     <WrapTextField>
-      <StyledTextField type={type} placeholder={placeholder} onChange={onChange} disabled={isDisabled} />
+      <StyledTextField type={type} placeholder={placeholder} onChange={onChange} disabled={isDisabled} value={value} />
       {
         isError && (
           <div className="error">

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { theme } from '../../configs/theme'
 
 export const WrapButton = styled.button`
   position: relative;
@@ -15,12 +16,11 @@ export const WrapButton = styled.button`
       cursor: pointer;
     }
     &.primary {
-      background: rgb(131,58,180);
-      background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 0%, rgba(252,176,69,1) 100%);
+      background: ${theme.gradientPrimary};
       color: #fff;
     }
     &.secondary {
-      background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgb(142 82 82) 0%, rgb(168 130 77) 100%);
+      background: ${theme.gradientSecondary};
       color: #fff;
     }
   }
