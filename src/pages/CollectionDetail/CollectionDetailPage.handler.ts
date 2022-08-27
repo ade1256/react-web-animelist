@@ -21,3 +21,11 @@ export const handleConfirmRemove = (state: any, setState: any, removeAnimeFromCo
   removeAnimeFromCollection(newArrayExceptId)
   handleCloseModal('delete', state, setState)
 }
+
+export const handleOnClickRename = (id: any, state: any, setState: any) => {
+  setState({
+    ...state,
+    showModalRename: true,
+    selectedCollectionId: id
+  })
+}

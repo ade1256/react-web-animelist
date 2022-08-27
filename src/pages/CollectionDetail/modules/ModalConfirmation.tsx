@@ -1,7 +1,6 @@
 import { Button, Modal } from "../../../components"
 
 type ModalProps = {
-  title: string,
   onCloseModal: () => any,
   onConfirm: () => any
 }
@@ -11,12 +10,12 @@ const styleButtonGroup = {
   justifyContent: 'flex-end'
 }
 
-const ModalConfirmation = ({ title, onCloseModal, onConfirm} : ModalProps) => {
+const ModalConfirmation = ({ onCloseModal, onConfirm }: ModalProps) => {
   return (
-    <Modal title={title} onClose={onCloseModal}>
+    <Modal title="Are you sure remove from this collection ?" onClose={onCloseModal}>
       <div style={styleButtonGroup}>
-      <Button theme="no-bg" style={{marginRight: 8}} onClick={onCloseModal}>Cancel</Button>
-      <Button onClick={onConfirm}>Yes, sure</Button>
+        <Button theme="no-bg" style={{ marginRight: 8 }} onClick={onCloseModal}>Cancel</Button>
+        <Button onClick={onConfirm}>Yes, sure</Button>
       </div>
     </Modal>
   )

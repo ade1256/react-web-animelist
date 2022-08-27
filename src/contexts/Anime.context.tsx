@@ -20,6 +20,12 @@ export const AnimeContextProvider = ({ children }: any) => {
     setIsRefetch(true)
   }
 
+  const updateCollections = (data: CollectionList) => {
+    localStorage.setItem("collections", JSON.stringify(data))
+    setCollections(data)
+    setIsRefetch(true)
+  }
+
   const addAnimeCollection = (data: AnimeCollection) => {
     let myCollection = animeCollections
     myCollection.push(data)
@@ -67,6 +73,7 @@ export const AnimeContextProvider = ({ children }: any) => {
       value={{
         collections,
         addCollection,
+        updateCollections,
         animeCollections,
         addAnimeCollection,
         removeAnimeFromCollection
