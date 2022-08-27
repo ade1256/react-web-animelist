@@ -10,7 +10,7 @@ import ModalRemoveConfirmation from "./modules/ModalDeleteConfirmation"
 
 const CollectionsPage = () => {
   const navigate = useNavigate()
-  const { collections, animeCollections, addCollection, updateCollections } = useAnimeContext()
+  const { collections, animeCollections, addCollection, updateCollections, removeAnimeFromCollection } = useAnimeContext()
   const [state, setState] = useState({
     name: '',
     isError: true,
@@ -98,7 +98,7 @@ const CollectionsPage = () => {
         state.isShowModalRemove && (
           <ModalRemoveConfirmation
             onCloseModal={() => handleCloseModal('remove', state, setState)}
-            onConfirm={() => handleConfirmRemove(state, setState, updateCollections, collections)}
+            onConfirm={() => handleConfirmRemove(state, setState, updateCollections, collections, removeAnimeFromCollection, animeCollections)}
             selectedCollection={state.selectedCollection}
           />
         )
