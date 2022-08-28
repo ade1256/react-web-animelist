@@ -13,7 +13,7 @@ type TextFieldProps = {
 
 const TextFieldComponent = ({ type, onChange, placeholder, isDisabled, isError, errorMessage, value }: TextFieldProps) => {
   return (
-    <WrapTextField>
+    <WrapTextField data-testid="textfield-component">
       <StyledTextField type={type} placeholder={placeholder} onChange={onChange} disabled={isDisabled} value={value} />
       {
         isError && (
