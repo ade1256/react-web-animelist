@@ -2,7 +2,7 @@ import { WrapAdultIcon } from "./AdultIcon.style"
 
 const AdultIconComponent = () => {
   return (
-    <WrapAdultIcon>
+    <WrapAdultIcon data-testid="adult-icon">
       <div className="icon">18+</div>
       <span>Adult content</span>
     </WrapAdultIcon>
