@@ -19,7 +19,7 @@ const defaultProps = {
 const CardComponent = ({id, title, image, averageScore, isShowRemoveButton, onRemove} : Props) => {
   const navigate = useNavigate()
   return (
-    <WrapCard>
+    <WrapCard data-testid={'card-component'}>
       <div className={`score ${averageScore < 80 ? 'orange' : 'green'}`}>
           <span>{averageScore}</span>
         </div>
@@ -31,7 +31,7 @@ const CardComponent = ({id, title, image, averageScore, isShowRemoveButton, onRe
           )
         }
       <div className="image" onClick={() => navigate(`/detail/${id}`)}>
-        <img src={image} />
+        <img src={image} alt={`image-of-${title}`} />
       </div>
       <span onClick={() => navigate(`/detail/${id}`)}>{title}</span>
     </WrapCard>
