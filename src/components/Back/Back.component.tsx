@@ -8,7 +8,7 @@ type BackProps = {
 
 const BackComponent = (props: BackProps) => {
   return (
-    <WrapBack>
+    <WrapBack data-testid="back-component">
       <div className="btn" onClick={props.handleClick}>
         <FontAwesomeIcon icon={solid('arrow-left')} />
         <span>Back</span>
