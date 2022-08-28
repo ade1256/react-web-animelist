@@ -28,7 +28,7 @@ const ButtonComponent = (props: ButtonProps) => {
   }
 
   return (
-    <WrapButton className={props.className} onClick={props.onClick} style={props.style} disabled={props.isDisabled}>
+    <WrapButton data-testid="button-component" className={props.className} onClick={props.onClick} style={props.style} disabled={props.isDisabled}>
       {_renderButton()}
     </WrapButton>
   )
