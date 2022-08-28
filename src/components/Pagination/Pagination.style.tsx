@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { theme } from "../../configs/theme";
 
 export const WrapPagination = styled.div`
   position: relative;
@@ -12,7 +13,7 @@ export const WrapPagination = styled.div`
     padding: 4px 8px;
     /* border-radius: 4px; */
     &.active {
-      background-color: blue;
+      background-color: ${theme.purple};
       color: #fff;
       border: 1px solid blue;
     }

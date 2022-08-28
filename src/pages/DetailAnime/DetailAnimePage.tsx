@@ -140,10 +140,10 @@ const DetailAnimePage = () => {
               {dataAnime.isAdult && <AdultIcon />}
             </div>
             <div className="description" dangerouslySetInnerHTML={{ __html: dataAnime.description }} />
-            {isAnimeSaved && <p style={{ marginTop: 8, fontSize: 14, fontWeight: 600 }}>Saved to collections :</p> }
+            {<p style={{ marginTop: 8, fontSize: 14, fontWeight: 600 }}>Saved to collections :</p> }
             <div className="collections-list">
               {
-                isAnimeSaved && savedToCollections.map((collection: any, index: number) => {
+                savedToCollections.map((collection: any, index: number) => {
                   return <CollectionItem key={index} id={collection.id} name={collection.name} onClick={() => navigate(`/collection/${collection.id}`)} isShowCover={false} />
                 })
               }

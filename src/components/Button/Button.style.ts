@@ -27,7 +27,7 @@ export const WrapButton = styled.button`
       background: none;
     }
     &.default {
-      background: ${theme.orange};
+      background: ${theme.red};
       color: #fff;
     }
   }
