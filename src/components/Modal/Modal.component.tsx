@@ -11,7 +11,7 @@ type ModalProps = {
 
 const ModalComponent = ({ onClose, title, children } : ModalProps) => {
   return (
-    <WrapModal>
+    <WrapModal data-testid="modal-component">
       <div className="modal">
         <div className="content-title">
           <h4>{title}</h4>
