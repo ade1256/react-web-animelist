@@ -71,7 +71,7 @@ const CollectionDetailPage = () => {
       {state.showModalRemove && (
         <ModalConfirmation
           onCloseModal={() => handleCloseModal('delete', state, setState)}
-          onConfirm={() => handleConfirmRemove(state, setState, removeAnimeFromCollection, animeCollections)}
+          onConfirm={() => handleConfirmRemove(state, setState, removeAnimeFromCollection, animeCollections, collectionId)}
           collectionName={collectionName[0].name}
           anime={state.selectedAnime}
         />

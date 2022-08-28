@@ -15,7 +15,7 @@ export const WrapPagination = styled.div`
     &.active {
       background-color: ${theme.purple};
       color: #fff;
-      border: 1px solid blue;
+      border: 1px solid ${theme.purple};
     }
     &:first-of-type {
       border-bottom-left-radius: 4px;

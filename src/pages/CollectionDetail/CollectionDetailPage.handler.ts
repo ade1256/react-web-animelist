@@ -14,9 +14,12 @@ export const handleCloseModal = (type: string, state: any, setState: any) => {
   }
 }
 
-export const handleConfirmRemove = (state: any, setState: any, removeAnimeFromCollection: any, collectionList: Array<any>[]) => {
-  const newArrayExceptId = collectionList.filter((x: any) => x.id !== state.selectedAnime.id)
-  removeAnimeFromCollection(newArrayExceptId)
+export const handleConfirmRemove = (state: any, setState: any, removeAnimeFromCollection: any, collectionList: Array<any>[], collectionId: any) => {
+  const arrayListDifferentCollection = collectionList.filter((x: any) => (x.collectionId != collectionId))
+  const arrayListSameCollection = collectionList.filter((x: any) => (x.collectionId == collectionId))
+  const deleteFromCollection = arrayListSameCollection.filter((x: any) => x.id !== state.selectedAnime.id)
+  let newArray = [...arrayListDifferentCollection, ...deleteFromCollection]
+  removeAnimeFromCollection(newArray)
   handleCloseModal('delete', state, setState)
 }
 

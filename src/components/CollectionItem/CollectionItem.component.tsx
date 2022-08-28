@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
 
 type CollectionItemProps = {
-  id: number,
   name: string,
   onClick?: () => any,
   coverImage?: any,
@@ -24,13 +23,13 @@ const defaultProps = {
   isSelected: false
 }
 
-const CollectionItemComponent = ({ id, name, onClick, coverImage, isShowCover, isShowRemoveBtn, isShowEditBtn, onClickEdit, onClickRemove, isSelected } : CollectionItemProps) => {
+const CollectionItemComponent = ({ name, onClick, coverImage, isShowCover, isShowRemoveBtn, isShowEditBtn, onClickEdit, onClickRemove, isSelected } : CollectionItemProps) => {
   return (
     <WrapCollectionItem>
       {
         isShowCover && (
           <div className="cover" onClick={onClick}>
-            <img src={coverImage} />
+            <img src={coverImage} alt={`collection-image-${name}`} />
           </div>
         )
       }

@@ -88,7 +88,6 @@ const CollectionsPage = () => {
         {
           !isEmpty(collections) && collections.map((collection: Collection, index: number) => {
             return <CollectionItem key={index}
-              id={collection.id}
               name={collection.name}
               coverImage={getFirstImageByCollectionId(collection.id)}
               onClick={() => handleClick(collection.id)}

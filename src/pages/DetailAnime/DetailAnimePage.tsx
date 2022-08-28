@@ -144,7 +144,7 @@ const DetailAnimePage = () => {
             <div className="collections-list">
               {
                 savedToCollections.map((collection: any, index: number) => {
-                  return <CollectionItem key={index} id={collection.id} name={collection.name} onClick={() => navigate(`/collection/${collection.id}`)} isShowCover={false} />
+                  return <CollectionItem key={index} name={collection.name} onClick={() => navigate(`/collection/${collection.id}`)} isShowCover={false} />
                 })
               }
             </div>
@@ -161,11 +161,11 @@ const DetailAnimePage = () => {
       {
         state.isShowModal && (
           <Modal title="Add to my collection..." onClose={handleToggleModal}>
-            <p>Select to collections</p>
+            {!isEmpty(collections) && <p>Select to collections</p>}
             <div className="content-collection">
               {
                 !isEmpty(collections) && collections.map((collection: Collection, index: number) => {
-                  return <CollectionItem key={index} id={collection.id} name={collection.name} onClick={() => handleSelectCollection(collection.id)} isShowCover={false} isSelected={selectedCollection.includes(collection.id)} />
+                  return <CollectionItem key={index} name={collection.name} onClick={() => handleSelectCollection(collection.id)} isShowCover={false} isSelected={selectedCollection.includes(collection.id)} />
                 })
               }
             </div>
