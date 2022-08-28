@@ -36,7 +36,7 @@ const PaginationComponent = ({ currentPage, totalPage, handleChangePage }: Pagin
     }
   }
   return (
-    <WrapPagination>
+    <WrapPagination data-testid="pagination-component">
       {
         generatePagination().map((v: any, index: number) => {
           return <div key={index} className={`item ${currentPage === v && 'active'}`} onClick={() => handleChangePage(v)}>{v}</div>
