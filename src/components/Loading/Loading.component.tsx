@@ -4,7 +4,7 @@ import { WrapLoading } from "./Loading.style"
 
 const LoadingComponent = () => {
   return (
-    <WrapLoading>
+    <WrapLoading data-testid="loading-component">
       <FontAwesomeIcon icon={solid('spinner')} spin/>
       <span>loading ...</span>
     </WrapLoading>
