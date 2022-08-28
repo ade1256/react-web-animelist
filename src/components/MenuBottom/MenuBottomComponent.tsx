@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 const MenuBottomComponent = () => {
   const navigate = useNavigate()
   return (
-    <WrapMenuBottom>
+    <WrapMenuBottom data-testid="menu-bottom-component">
       <div className="menu" onClick={() => navigate('/')}>
         <div className="icon">
           <FontAwesomeIcon icon={solid('home')} />
