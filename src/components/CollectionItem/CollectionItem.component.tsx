@@ -25,7 +25,7 @@ const defaultProps = {
 
 const CollectionItemComponent = ({ name, onClick, coverImage, isShowCover, isShowRemoveBtn, isShowEditBtn, onClickEdit, onClickRemove, isSelected } : CollectionItemProps) => {
   return (
-    <WrapCollectionItem>
+    <WrapCollectionItem data-testid='collection-item-component'>
       {
         isShowCover && (
           <div className="cover" onClick={onClick}>
